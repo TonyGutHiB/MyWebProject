@@ -3,37 +3,38 @@ body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     margin: 0;
-    background-color: #f2f2f2;
+    background-color: #f4f4f4;
     color: #333;
 }
 
 header {
     background-color: #002b5c; /* Dark blue */
     color: white;
-    padding: 1em 0;
+    padding: 1.5em 0;
     text-align: center;
 }
 
-header nav ul {
+nav ul {
+    list-style: none;
     display: flex;
     justify-content: center;
-    list-style: none;
+    margin: 0;
 }
 
-header nav ul li {
+nav ul li {
     margin: 0 15px;
 }
 
-header nav ul li a {
+nav ul li a {
     color: white;
     text-decoration: none;
     padding: 10px 20px;
-    transition: background 0.3s ease;
+    transition: background-color 0.3s;
 }
 
-header nav ul li a:hover,
-header nav ul li a.active {
-    background-color: #e0a458; /* Accent color */
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: #e0a458;
     border-radius: 5px;
 }
 
@@ -44,8 +45,9 @@ header nav ul li a.active {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
     text-align: center;
+    color: white;
+    transition: background-image 0.5s ease-in-out;
 }
 
 .hero-content {
@@ -54,9 +56,9 @@ header nav ul li a.active {
 
 .hero-content h2 {
     font-size: 3rem;
+    color: #ff6347;
     margin-bottom: 10px;
     animation: fadeInDown 1.5s ease-out;
-    color: #ff6347; /* Updated color for the heading */
 }
 
 .hero-content p {
@@ -69,9 +71,8 @@ header nav ul li a.active {
     background: #ff6347;
     color: white;
     padding: 10px 20px;
-    border: none;
-    text-decoration: none;
     border-radius: 5px;
+    border: none;
     transition: background 0.3s ease;
 }
 
@@ -90,106 +91,64 @@ section.features {
     justify-content: space-around;
 }
 
-.features-grid .feature {
+.feature {
     flex: 1;
     margin: 10px;
     padding: 20px;
     background-color: #fff;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     transition: transform 0.3s ease;
 }
 
-.features-grid .feature:hover {
+.feature:hover {
     transform: translateY(-10px);
 }
 
-/* About Us Page Specific Styles */
+/* About, Mission, Core Values, Team, and History Sections */
 section {
     margin: 2em 0;
     padding: 2em;
-    text-align: center;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    text-align: center;
     animation: fadeIn 1.5s ease-in-out;
 }
 
-/* About Intro Section */
 .about-intro {
-    background-color: #f0f8ff; /* Light blue background */
-    color: #002b5c; /* Dark blue text */
+    background-color: #f0f8ff;
+    color: #002b5c;
 }
 
-.about-intro h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-.about-intro p {
-    font-size: 1.2rem;
-}
-
-/* Mission Section */
 .mission {
-    background-color: #fff3cd; /* Light yellow */
-    color: #856404; /* Darker yellow/brown text */
-}
-
-.mission h2 {
+    background-color: #fff3cd;
     color: #856404;
 }
 
-.mission p {
-    font-size: 1.1rem;
-}
-
-/* Core Values Section */
 .core-values {
-    background-color: #e6f7ff; /* Soft blue */
+    background-color: #e6f7ff;
 }
 
-.values-grid {
+.values-grid, .team-grid {
     display: flex;
     justify-content: space-around;
     margin-top: 20px;
 }
 
-.value-item {
+.value-item, .team-member {
     flex: 1;
     margin: 10px;
     padding: 20px;
     background-color: #fff;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
-.value-item h3 {
-    color: #002b5c; /* Dark blue */
-}
-
-.value-item:hover {
+.value-item:hover, .team-member:hover {
     transform: scale(1.05);
-    background-color: #d4e9f2; /* Slightly darker blue on hover */
-}
-
-/* Team Section */
-.team {
-    background-color: #ffebee; /* Light pink */
-    color: #b71c1c; /* Dark red */
-}
-
-.team-grid {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-}
-
-.team-member {
-    text-align: center;
-    flex: 1;
-    margin: 10px;
+    background-color: #d4e9f2;
 }
 
 .team-member img {
@@ -197,33 +156,18 @@ section {
     width: 150px;
     height: 150px;
     object-fit: cover;
-    margin-bottom: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .team-member h3 {
-    margin: 10px 0 5px 0;
     font-size: 1.2rem;
+    margin: 10px 0 5px;
     color: #b71c1c;
-}
-
-.team-member p {
-    color: #d32f2f; /* Slightly lighter red */
-}
-
-/* History Section */
-.history {
-    background-color: #e8f5e9; /* Light green */
-    color: #388e3c; /* Dark green */
-}
-
-.history p {
-    font-size: 1.1rem;
 }
 
 /* Call to Action Section */
 .cta {
-    background-color: #ff6347; /* Tomato red */
+    background-color: #ff6347;
     color: white;
     border-radius: 10px;
     padding: 2em;
@@ -238,7 +182,6 @@ section {
     background-color: white;
     color: #ff6347;
     padding: 10px 20px;
-    text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
     border: 2px solid white;
@@ -246,22 +189,17 @@ section {
 }
 
 .cta .btn:hover {
-    background-color: white;
-    color: #e5533d; /* Slightly darker red on hover */
+    color: #e5533d;
     border: 2px solid #e5533d;
 }
 
 /* Footer */
 footer {
-    background-color: #002b5c; /* Dark blue */
+    background-color: #002b5c;
     color: white;
     text-align: center;
     padding: 1em 0;
     margin-top: 2em;
-}
-
-footer p {
-    margin: 0;
 }
 
 /* Animations */
@@ -300,20 +238,18 @@ footer p {
 
 /* Contact Page Styles */
 .contact-intro {
-    text-align: center;
     padding: 2em;
-    background-color: #f0f8ff; /* Light blue background */
+    background-color: #f0f8ff;
     color: #002b5c;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    margin: 2em 0;
 }
 
 .contact-form {
     width: 50%;
     margin: 0 auto;
-    background-color: #fff;
     padding: 2em;
+    background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
@@ -327,366 +263,91 @@ footer p {
     margin-bottom: 15px;
 }
 
-.form-group label {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-    display: block;
-    color: #333;
-}
-
-.form-group input,
-.form-group textarea {
+.form-group input, .form-group textarea {
     width: 100%;
     padding: 10px;
+    border-radius: 5px;
     border: 1px solid #ccc;
-    border-radius: 5px;
     font-size: 1rem;
-    box-sizing: border-box;
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
+.form-group input:focus, .form-group textarea:focus {
     border-color: #002b5c;
-    outline: none;
 }
 
-.form-group button {
-    padding: 10px 20px;
-    background-color: #ff6347;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.form-group button:hover {
-    background-color: #e5533d;
-}
-
-/* Gallery Page Styles */
-.gallery-intro {
-    text-align: center;
-    padding: 2em;
-    background-color: #f0f8ff; /* Light blue background */
-    color: #002b5c;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    margin: 2em 0;
-}
-
-.gallery-grid {
+/* Marketplace Styles */
+.marketplace-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 20px;
-    padding: 2em;
-}
-
-.gallery-item {
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: auto;
-    transition: transform 0.3s ease;
-}
-
-.gallery-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-}
-
-.gallery-item img:hover {
-    transform: scale(1.1);
-}
-
-/* Login and Register Page Styles */
-.login-container, .register-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 80vh;
-    background-color: #f9f9f9;
-}
-
-.login-box, .register-box {
-    background-color: white;
-    padding: 3em;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    width: 400px;
-}
-
-.login-box h2, .register-box h2 {
-    text-align: center;
-    margin-bottom: 1.5em;
-    color: #002b5c;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 1.1rem;
-    color: #333;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-.form-group input:focus {
-    border-color: #002b5c;
-    outline: none;
-}
-
-.form-group button {
-    width: 100%;
-    padding: 10px;
-    background-color: #ff6347;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.form-group button:hover {
-    background-color: #e5533d;
-}
-
-.register-link, .login-link {
-    color: #002b5c;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.register-link:hover, .login-link:hover {
-    text-decoration: underline;
-}
-
-/* Login Button in Navbar */
-.login-btn {
-    background-color: #ff6347;
-    padding: 10px 20px;
-    color: white;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.login-btn:hover {
-    background-color: #e5533d;
-}
-/* Hero Section with Slideshow */
-.hero {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-    transition: background-image 1s ease-in-out;
-}
-
-/* Slide navigation controls */
-.slideshow-controls {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-}
-
-.prev-slide, .next-slide {
-    cursor: pointer;
-    padding: 16px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    color: white;
-    font-size: 24px;
-}
-
-.prev-slide:hover, .next-slide:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Add a transition to the background image change */
-.hero {
-    transition: background-image 0.5s ease;
-}
-/* Hero Section with smooth background transitions */
-.hero {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-    transition: background-image 1s ease-in-out; /* Smooth transition */
-    background-color: #002b5c; /* Fallback background color */
-}
-/* General Body Styling */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    margin: 0;
-}
-
-/* Header Styling */
-header {
-    background-color: #002b5c;
-    color: white;
-    padding: 1.5em 0;
-    text-align: center;
-}
-
-header nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-}
-
-header nav ul li {
-    margin: 0 15px;
-}
-
-header nav ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    transition: background-color 0.3s;
-}
-
-header nav ul li a:hover,
-header nav ul li a.active {
-    background-color: #e0a458;
-    border-radius: 5px;
-}
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-  }
-  
-  header {
-    background-color: #333;
-    padding: 10px 0;
-    color: white;
-    text-align: center;
-  }
-  
-  nav ul {
-    padding: 0;
-    list-style-type: none;
-  }
-  
-  nav ul li {
-    display: inline;
-    margin-right: 15px;
-  }
-  
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .marketplace-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    margin: 20px;
-  }
-  
-  .marketplace-item {
+    padding: 20px;
+}
+
+.marketplace-item {
+    display: flex;
+    flex-direction: column;
     background-color: white;
-    border: 1px solid #ccc;
     padding: 15px;
-    width: 250px;
-    text-align: center;
-  }
-  
-  .marketplace-item img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  .marketplace-item h3 {
-    margin: 10px 0;
-  }
-  
-  .marketplace-item p {
-    margin: 5px 0;
-  }
-  
-  .marketplace-item button {
-    background-color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    height: 100%;
+}
+
+.marketplace-item img {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.marketplace-item h3, .marketplace-item p {
+    margin: 0 0 10px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+
+.marketplace-item button {
+    padding: 10px 20px;
+    background-color: #007BFF;
     color: white;
+    border-radius: 5px;
     border: none;
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .marketplace-item button:hover {
-    background-color: #555;
-  }
-  
-  /* Sellers Section */
-  .seller-request-form {
-    background-color: white;
+    transition: background 0.3s ease;
+}
+
+.marketplace-item button:hover {
+    background-color: #0056b3;
+}
+
+/* Sellers Section Form */
+.seller-request-form {
+    background-color: #f8f8f8;
     padding: 20px;
     border: 1px solid #ccc;
-    width: 300px;
-    margin: 0 auto 50px;
-  }
-  
-  .seller-request-form label,
-  .seller-request-form input {
-    display: block;
+    max-width: 500px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.seller-request-form input[type="text"], .seller-request-form input[type="email"] {
     width: 100%;
-    margin-bottom: 10px;
-  }
-  
-  .seller-request-form input {
-    padding: 10px;
+    padding: 8px;
+    margin-bottom: 15px;
+    border-radius: 5px;
     border: 1px solid #ccc;
-  }
-  
-  .seller-request-form button {
-    background-color: #333;
-    color: white;
+}
+
+.seller-request-form button {
+    width: 100%;
     padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
     border: none;
-    cursor: pointer;
-  }
-  
-  .seller-request-form button:hover {
-    background-color: #555;
-  }
-  
+    transition: background 0.3s ease;
+}
+
+.seller-request-form button:hover {
+    background-color: #218838;
+}

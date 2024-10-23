@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Character set and viewport settings for responsive design -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Services - StyleHub</title>
+  <!-- Linking external CSS stylesheet -->
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
   <header>
     <div class="logo">
+      <!-- Logo for the website -->
       <h1>StyleHub</h1>
     </div>
     <nav>
       <ul>
+        <!-- Navigation links to different sections of the site -->
         <li><a href="../index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="services.html" class="active">Services</a></li> <!-- Active link to current page -->
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="login.html" class="login-btn">Login</a></li>
@@ -24,68 +28,75 @@
     </nav>
   </header>
 
-  <section class="services-intro">
-    <h2>Our Services Marketplace</h2>
-    <p>Explore our services provided by the community. Whether you're looking for items to buy or have something to sell, this is the place for you!</p>
-  </section>
+  <main>
+    <section class="services-intro">
+      <!-- Introduction to the services offered -->
+      <h2>Our Services Marketplace</h2>
+      <p>Explore our services provided by the community. Whether you're looking for items to buy or have something to sell, this is the place for you!</p>
+    </section>
 
-  <!-- Buyers Section -->
-  <section class="marketplace-buyers">
-    <h2>Market</h2>
-    <div class="marketplace-grid">
-      <div class="marketplace-item">
-        <img src="../images/nikeone.jpg" alt="Pair of Shoes">
-        <h3>Tony</h3>
-        <p>Selling: Pair of Nike Running Shoes</p>
-        <p><strong>Price: $50</strong></p>
-        <button>Contact Seller</button>
+    <!-- Buyers Section -->
+    <section class="marketplace-buyers">
+      <h2>Market</h2>
+      <div class="marketplace-grid">
+        <!-- Individual marketplace items -->
+        <article class="marketplace-item">
+          <img src="../images/nikeone.jpg" alt="Pair of Nike Running Shoes">
+          <h3>Tony</h3>
+          <p>Selling: Pair of Nike Running Shoes</p>
+          <p><strong>Price: $50</strong></p>
+          <button>Contact Seller</button>
+        </article>
+        <article class="marketplace-item">
+          <img src="../images/jacket.jpg" alt="Black Leather Jacket">
+          <h3>Sara</h3>
+          <p>Selling: Black Leather Jacket</p>
+          <p><strong>Price: $80</strong></p>
+          <button>Contact Seller</button>
+        </article>
+        <article class="marketplace-item">
+          <img src="../images/dress.jpg" alt="Floral Summer Dress">
+          <h3>Alice</h3>
+          <p>Selling: Floral Summer Dress</p>
+          <p><strong>Price: $40</strong></p>
+          <button>Contact Seller</button>
+        </article>
+        <article class="marketplace-item">
+          <img src="../images/watch.jpg" alt="Classic Wrist Watch">
+          <h3>Michael</h3>
+          <p>Selling: Classic Wrist Watch</p>
+          <p><strong>Price: $120</strong></p>
+          <button>Contact Seller</button>
+        </article>
       </div>
-      <div class="marketplace-item">
-        <img src="../images/jacket.jpg" alt="Leather Jacket">
-        <h3>Sara</h3>
-        <p>Selling: Black Leather Jacket</p>
-        <p><strong>Price: $80</strong></p>
-        <button>Contact Seller</button>
-      </div>
-      <div class="marketplace-item">
-        <img src="../images/dress.jpg" alt="Summer Dress">
-        <h3>Alice</h3>
-        <p>Selling: Floral Summer Dress</p>
-        <p><strong>Price: $40</strong></p>
-        <button>Contact Seller</button>
-      </div>
-      <div class="marketplace-item">
-        <img src="../images/watch.jpg" alt="Wrist Watch">
-        <h3>Michael</h3>
-        <p>Selling: Classic Wrist Watch</p>
-        <p><strong>Price: $120</strong></p>
-        <button>Contact Seller</button>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Sellers Section -->
-  <section class="marketplace-sellers">
-    <h2>Looking for Something?</h2>
-    <p>If you're searching for a specific service or product, request it here and sellers can contact you!</p>
-    <form action="#" method="post" class="seller-request-form">
-      <label for="buyer-name">Your Name:</label>
-      <input type="text" id="buyer-name" name="buyer-name" required>
-      
-      <label for="item-request">Service or Product You're Looking For:</label>
-      <input type="text" id="item-request" name="item-request" required>
-      
-      <label for="contact-info">Contact Information:</label>
-      <input type="email" id="contact-info" name="contact-info" required>
-      
-      <button type="submit">Submit Request</button>
-    </form>
-  </section>
+    <!-- Sellers Section -->
+    <section class="marketplace-sellers">
+      <h2>Looking for Something?</h2>
+      <p>If you're searching for a specific service or product, request it here and sellers can contact you!</p>
+      <!-- Form for buyers to submit requests for specific services or products -->
+      <form action="#" method="post" class="seller-request-form">
+        <label for="buyer-name">Your Name:</label>
+        <input type="text" id="buyer-name" name="buyer-name" required>
+        
+        <label for="item-request">Service or Product You're Looking For:</label>
+        <input type="text" id="item-request" name="item-request" required>
+        
+        <label for="contact-info">Contact Information:</label>
+        <input type="email" id="contact-info" name="contact-info" required>
+        
+        <button type="submit">Submit Request</button>
+      </form>
+    </section>
+  </main>
 
   <footer>
+    <!-- Footer section with copyright information -->
     <p>&copy; 2024 StyleHub. All Rights Reserved.</p>
   </footer>
 
+  <!-- Linking external JavaScript file -->
   <script src="../js/script.js"></script>
 </body>
 </html>

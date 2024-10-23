@@ -4,67 +4,215 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Contact Us - Awesome Website</title>
-  <link rel="stylesheet" href="../css/style.css">
+  <title>Contact Us - StyleHub</title>
+  <style>
+    /* General Styles for the body */
+    body {
+      font-family: 'Arial', sans-serif; /* Font style */
+      line-height: 1.6; /* Line height for better readability */
+      margin: 0; /* Remove default margin */
+      background-color: #f4f4f4; /* Light grey background */
+      color: #333; /* Dark grey text color */
+    }
+
+    /* Header styles */
+    header {
+      background-color: #002b5c; /* Dark blue background */
+      color: white; /* White text color */
+      padding: 1.5em 0; /* Vertical padding */
+      text-align: center; /* Center the text */
+    }
+
+    /* Navigation styles */
+    nav ul {
+      list-style: none; /* Remove bullet points from the list */
+      display: flex; /* Use flexbox for horizontal layout */
+      justify-content: center; /* Center the nav items */
+      margin: 0; /* Remove default margin */
+    }
+
+    nav ul li {
+      margin: 0 15px; /* Space between nav items */
+    }
+
+    nav ul li a {
+      color: white; /* White text for links */
+      text-decoration: none; /* Remove underline */
+      padding: 10px 20px; /* Padding around links */
+      transition: background-color 0.3s; /* Smooth background color change on hover */
+    }
+
+    /* Styles for active and hover states */
+    nav ul li a:hover,
+    nav ul li a.active {
+      background-color: #e0a458; /* Highlight color */
+      border-radius: 5px; /* Rounded corners */
+    }
+
+    .active {
+      border-bottom: 2px solid white; /* Underline for active link */
+    }
+
+    /* Contact form intro section styles */
+    .contact-intro {
+      text-align: center; /* Center text alignment */
+      margin: 30px 0; /* Vertical margin */
+    }
+
+    .contact-intro h2 {
+      font-size: 2.2rem; /* Heading size */
+      margin-bottom: 10px; /* Space below heading */
+    }
+
+    .contact-intro p {
+      font-size: 1.1rem; /* Paragraph size */
+      color: #555; /* Grey color for paragraph text */
+    }
+
+    /* Contact form styling */
+    .contact-form {
+      background-color: white; /* White background for form */
+      margin: 0 auto; /* Center the form */
+      padding: 30px; /* Inner padding */
+      width: 100%; /* Full width */
+      max-width: 500px; /* Maximum width */
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    }
+
+    .form-group {
+      margin-bottom: 20px; /* Space below each form group */
+      display: flex; /* Flexbox layout for form group */
+      flex-direction: column; /* Stack elements vertically */
+    }
+
+    label {
+      margin-bottom: 8px; /* Space below label */
+      font-weight: bold; /* Bold label text */
+    }
+
+    /* Styles for input and textarea */
+    input[type="email"], textarea {
+      width: 100%; /* Full width of the parent */
+      padding: 12px; /* Inner padding */
+      border-radius: 5px; /* Rounded corners */
+      border: 1px solid #ccc; /* Light grey border */
+      font-size: 1rem; /* Font size */
+      background-color: #f4f4f4; /* Light grey background for input */
+      transition: border-color 0.3s; /* Smooth border color change on focus */
+      box-sizing: border-box; /* Include padding and border in element's total width */
+      height: 45px; /* Fixed height for input */
+    }
+
+    /* Styles for input and textarea on focus */
+    input[type="email"]:focus, textarea:focus {
+      border-color: #002b5c; /* Change border color on focus */
+    }
+
+    /* Styles for textarea */
+    textarea {
+      resize: none; /* Disable resizing */
+      height: 150px; /* Fixed height for textarea */
+    }
+
+    /* Button styles */
+    .btn {
+      width: 100%; /* Full width */
+      padding: 12px; /* Inner padding */
+      background-color: #ff6347; /* Button color */
+      color: white; /* White text color */
+      border: none; /* No border */
+      border-radius: 5px; /* Rounded corners */
+      font-size: 1.1rem; /* Button font size */
+      cursor: pointer; /* Change cursor on hover */
+      transition: background-color 0.3s ease; /* Smooth background color change */
+    }
+
+    /* Button hover styles */
+    .btn:hover {
+      background-color: #e5533d; /* Darker button color on hover */
+    }
+
+    /* Success message styling */
+    #successMessage {
+      display: none; /* Hidden by default */
+      margin-top: 20px; /* Space above message */
+      color: green; /* Green text for success message */
+      font-weight: bold; /* Bold text */
+    }
+
+    /* Footer styles */
+    footer {
+      text-align: center; /* Center text in footer */
+      padding: 20px; /* Vertical padding */
+      margin-top: auto; /* Push footer to bottom */
+      background-color: #333; /* Dark grey background */
+      color: white; /* White text color */
+    }
+
+    footer p {
+      margin: 0; /* Remove default margin */
+    }
+  </style>
 </head>
 <body>
+  <!-- Header Section -->
   <header>
     <div class="logo">
-      <h1>StyleHub</h1>
+      <h1>StyleHub</h1> <!-- Logo for the website -->
     </div>
     <nav>
       <ul>
+        <!-- Navigation links -->
         <li><a href="../index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
         <li><a href="login.html" class="login-btn">Login</a></li>
-        
       </ul>
     </nav>
   </header>
 
+  <!-- Contact Intro Section -->
   <section class="contact-intro">
-    <h2>Contact Us</h2>
+    <h2>Contact Us</h2> <!-- Main heading for contact section -->
     <p>If you have any questions or need assistance, feel free to reach out to us by filling out the form below.</p>
   </section>
 
+  <!-- Contact Form Section -->
   <section class="contact-form">
-    <!-- Contact form -->
-    <form id="contactForm">
+    <form id="contactForm"> <!-- Form element for user input -->
       <div class="form-group">
-        <label for="email">Your Email:</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <label for="email">Your Email:</label> <!-- Label for email input -->
+        <input type="email" id="email" name="email" placeholder="Enter your email" required> <!-- Email input field -->
       </div>
 
       <div class="form-group">
-        <label for="message">Your Message:</label>
-        <textarea id="message" name="message" rows="5" placeholder="Write your message here" required></textarea>
+        <label for="message">Your Message:</label> <!-- Label for message textarea -->
+        <textarea id="message" name="message" rows="5" placeholder="Write your message here" required></textarea> <!-- Message textarea -->
       </div>
 
-      <div class="form-group">
-        <button type="submit" class="btn">Send Message</button>
+      <div class="form-group" style="margin-top: 30px;"> <!-- Added margin-top to lower the button -->
+        <button type="submit" class="btn">Send Message</button> <!-- Submit button -->
       </div>
     </form>
 
-    <!-- Success message, hidden by default -->
-    <div id="successMessage" style="display:none; margin-top:20px; color:green;">
+    <div id="successMessage"> <!-- Success message after form submission -->
       Message sent successfully!
     </div>
   </section>
 
-  <footer>
-    <p>&copy; 2024 Awesome Website. All Rights Reserved.</p>
+  <!-- Footer Section -->
+  <footer style="background-color: #002b5c; color: white; text-align: center; padding: 1em 0; margin-top: 2em;">
+    <p>&copy; 2024 StyleHub. All Rights Reserved.</p> <!-- Footer copyright information -->
   </footer>
 
   <script>
-    // JavaScript function to handle form submission
+    // JavaScript to handle form submission
     document.getElementById('contactForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent the form from submitting
-
-      // Show the success message
-      document.getElementById('successMessage').style.display = 'block';
+      event.preventDefault(); // Prevent default form submission
+      document.getElementById('successMessage').style.display = 'block'; // Show success message
     });
   </script>
 </body>

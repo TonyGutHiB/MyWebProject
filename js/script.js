@@ -97,3 +97,15 @@ const preloadImages = images.map(imageUrl => {
     img.src = imageUrl.replace('url(', '').replace(')', '');
     return img;
 });
+
+// Set the active class on the current navigation link
+document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('nav ul li a');
+    const currentUrl = window.location.pathname.split('/').pop(); // Get current page
+
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentUrl) {
+            link.classList.add('active');
+        }
+    });
+});

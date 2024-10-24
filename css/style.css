@@ -41,7 +41,7 @@ nav ul li a.active {
 
 /* Hero Section */
 .hero {
-    background: url('../images/hero-bg.jpg') no-repeat center center/cover;
+    
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -293,8 +293,11 @@ footer {
 }
 
 .marketplace-item img {
-    width: 100%;
+    width: 35%; 
     margin-bottom: 15px;
+    display: block; /* Ensures the image centers properly */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .marketplace-item .content {
@@ -385,7 +388,7 @@ footer {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: url('../images/login-bg.jpg') no-repeat center center/cover;
+    background: url('../images/loginbackground.jpg') no-repeat center center/cover;
 }
 
 .login-box {
@@ -406,7 +409,7 @@ footer {
 }
 
 .login-box .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-align: left;
 }
 
@@ -436,7 +439,7 @@ footer {
 .login-box button {
     background-color: #ff6347;
     color: white;
-    padding: 15px;
+    padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -450,7 +453,7 @@ footer {
 }
 
 .login-box p {
-    margin-top: 20px;
+    margin-top: 10px;
     color: #333;
 }
 #ff6347
@@ -501,7 +504,7 @@ footer {
     align-items: center;
     height: 100vh;
     background-color: #f4f4f4;
-    background: url('../images/register-bg.jpg') no-repeat center center/cover;
+    background: url('../images/loginbackground.jpg') no-repeat center center/cover;
 }
 
 .register-box {
@@ -612,3 +615,46 @@ footer {
         font-size: 1rem;
     }
 }
+/* Gallery Section Styles */
+.gallery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px; /* Space between images */
+    margin: 20px 0;
+}
+
+.gallery-item {
+    flex: 1 1 calc(50% - 30px); /* Each item takes up 1/3 of the row, minus the gap */
+    max-width: calc(50% - 30px); /* Ensures the items are no wider than 1/3 of the row */
+}
+
+.gallery-item img {
+    width: 100%; /* Ensures images take up the full width of the gallery item */
+    height: auto; /* Maintains the aspect ratio of the image */
+    border-radius: 10px; /* Optional: Adds a slight border-radius for a rounded look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow effect */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05); /* Optional: Zoom effect on hover */
+}
+
+/* Adjust for smaller screens to stack the images */
+@media (max-width: 768px) {
+    .gallery-item {
+        flex: 1 1 calc(50% - 15px); /* Two per row on smaller screens */
+        max-width: calc(50% - 15px);
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-item {
+        flex: 1 1 100%; /* One per row on very small screens */
+        max-width: 100%;
+    }
+}
+
+
+

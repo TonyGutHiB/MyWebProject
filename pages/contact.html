@@ -11,7 +11,9 @@
       font-family: 'Arial', sans-serif; /* Font style */
       line-height: 1.6; /* Line height for better readability */
       margin: 0; /* Remove default margin */
-      background-color: #f4f4f4; /* Light grey background */
+      background: url('../images/loginbackground.jpg') no-repeat center center/cover; /* Background image */
+      background-size: cover; /* Ensure the image covers the whole background */
+      background-color: #f4f4f4; /* Fallback color */
       color: #333; /* Dark grey text color */
     }
 
@@ -41,18 +43,13 @@
       padding: 10px 20px; /* Padding around links */
       transition: background-color 0.3s; /* Smooth background color change on hover */
     }
-.contact-btn:hover {
-  background-color: #e0a458; /* Lighter hover color */
-}
 
-    /* Styles for active and hover states */
     nav ul li a:hover,
     nav ul li a.active {
       background-color: #e0a458; /* Highlight color */
       border-radius: 5px; /* Rounded corners */
     }
 
-    
     /* Contact form intro section styles */
     .contact-intro {
       text-align: center; /* Center text alignment */
@@ -78,14 +75,12 @@
       max-width: 500px; /* Maximum width */
       border-radius: 10px; /* Rounded corners */
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
-    
     }
 
     .form-group {
       margin-bottom: 20px; /* Space below each form group */
       display: flex; /* Flexbox layout for form group */
       flex-direction: column; /* Stack elements vertically */
-
     }
 
     label {
@@ -106,12 +101,10 @@
       height: 45px; /* Fixed height for input */
     }
 
-    /* Styles for input and textarea on focus */
     input[type="email"]:focus, textarea:focus {
       border-color: #002b5c; /* Change border color on focus */
     }
 
-    /* Styles for textarea */
     textarea {
       resize: none; /* Disable resizing */
       height: 150px; /* Fixed height for textarea */
@@ -130,7 +123,6 @@
       transition: background-color 0.3s ease; /* Smooth background color change */
     }
 
-    /* Button hover styles */
     .btn:hover {
       background-color: #e5533d; /* Darker button color on hover */
     }

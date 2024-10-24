@@ -359,7 +359,7 @@ footer {
 .seller-request-form input[type="password"],
 .seller-request-form textarea {
     width: 100%;
-    padding: 10px;
+    padding: 4px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -445,16 +445,16 @@ footer {
 }
 
 .login-box button:hover {
-    background-color: #e5533d;
+    background-color: #FF0000;
 }
 
 .login-box p {
     margin-top: 20px;
     color: #333;
 }
-
+#ff6347
 .login-box a {
-    color: #ff6347;
+    color: #FF0000;
     text-decoration: none;
     font-weight: bold;
 }

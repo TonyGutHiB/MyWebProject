@@ -3,10 +3,30 @@ body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     margin: 0;
-    background: url('../images/loginbackground.jpg') no-repeat center center/cover;
     background-size: cover;
-    background-color: #f4f4f4;
+    background: #f4f4f4 url('../images/loginbackground.jpg') no-repeat center center;
     color: #333;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.logo img {
+    margin-right: 20px; /* Adds space between image and text */
+    margin-left: 20px;
+    height: 100px;
+    width: 100px;
+}
+
+.logo h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin: 0;
 }
 
 header {
@@ -110,11 +130,9 @@ section.features {
 
 /* About, Mission, Core Values, Team, and History Sections */
 section {
-    margin: 2em 0;
     padding: 2em;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
     text-align: center;
     animation: fadeIn 1.5s ease-in-out;
 }
@@ -177,7 +195,7 @@ section {
     color: white;
     border-radius: 10px;
     padding: 2em;
-    margin: 3em 0;
+    margin: 0;
 }
 
 .cta h2 {
@@ -205,7 +223,7 @@ footer {
     color: white;
     text-align: center;
     padding: 1em 0;
-    margin-top: 2em;
+    margin-top: 0;
 }
 
 /* Animations */
@@ -562,7 +580,7 @@ footer {
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px; /* Space between images */
-    margin: 20px 0;
+    margin: 0;
 }
 
 .gallery-item {
@@ -713,7 +731,6 @@ footer {
 }
 
 
-  
   /* Contact form intro section styles */
  
   .contact-intro {
@@ -738,7 +755,7 @@ footer {
   /* Contact form styling */
   .contact-form {
     background-color: white;
-    margin: 0 auto;
+    margin: 0 auto 25px;
     padding: 30px;
     width: 100%;
     max-width: 500px;

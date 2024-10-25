@@ -3,6 +3,8 @@ body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     margin: 0;
+    background: url('../images/loginbackground.jpg') no-repeat center center/cover;
+    background-size: cover;
     background-color: #f4f4f4;
     color: #333;
 }
@@ -240,47 +242,6 @@ footer {
     }
 }
 
-/* Contact Page Styles */
-.contact-intro {
-    padding: 2em;
-    background-color: #f0f8ff;
-    color: #002b5c;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-}
-
-.contact-form {
-    width: 50%;
-    margin: 0 auto;
-    padding: 2em;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-}
-
-.contact-form form {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: #002b5c;
-}
-
 /* Marketplace Styles */
 .marketplace-item {
     display: flex;
@@ -353,20 +314,21 @@ footer {
     background-color: #f8f8f8;
     padding: 20px;
     border: 1px solid #ccc;
-    max-width: 500px;
+    max-width: 400px;
     margin: 20px auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Styling specific to the three input fields in the buyer request form */
 .seller-request-form input[type="text"],
-.seller-request-form input[type="email"],
-.seller-request-form input[type="password"],
-.seller-request-form textarea {
+.seller-request-form input[type="email"] {
     width: 100%;
-    padding: 4px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
+    padding: 10px; /* Padding inside the input fields */
+    margin: 10px 0; /* Space between fields */
+    border: 1px solid #ccc; /* Light border */
     border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
 }
 
 .seller-request-form button {
@@ -381,7 +343,6 @@ footer {
 .seller-request-form button:hover {
     background-color: #218838;
 }
-
 /* Login Page Styles */
 .login-container {
     display: flex;
@@ -396,7 +357,7 @@ footer {
     padding: 40px 30px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    width: 400px;
+    width: 450px;
     max-width: 100%;
     text-align: center;
     animation: fadeInUp 1s ease-out;
@@ -423,12 +384,13 @@ footer {
 .login-box input[type="email"],
 .login-box input[type="password"] {
     width: 100%;
-    padding: 7px;
+    padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 1rem;
     background-color: #f4f4f4;
     transition: border-color 0.3s;
+    box-sizing:border-box;
 }
 
 .login-box input[type="email"]:focus,
@@ -456,7 +418,7 @@ footer {
     margin-top: 10px;
     color: #333;
 }
-#ff6347
+
 .login-box a {
     color: #FF0000;
     text-decoration: none;
@@ -465,18 +427,6 @@ footer {
 
 .login-box a:hover {
     text-decoration: underline;
-}
-
-/* Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 /* Mobile Responsiveness */
@@ -540,12 +490,13 @@ footer {
 .register-box input[type="email"],
 .register-box input[type="password"] {
     width: 100%;
-    padding: 7px;
+    padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 0.95rem;
     background-color: #f4f4f4;
     transition: border-color 0.3s;
+    box-sizing: border-box;
 }
 
 .register-box input[type="text"]:focus,
@@ -585,17 +536,7 @@ footer {
     text-decoration: underline;
 }
 
-/* Add animation to the registration form */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
@@ -625,8 +566,8 @@ footer {
 }
 
 .gallery-item {
-    flex: 1 1 calc(50% - 30px); /* Each item takes up 1/3 of the row, minus the gap */
-    max-width: calc(50% - 30px); /* Ensures the items are no wider than 1/3 of the row */
+    flex: 1 1 calc(50% - 30px); /* Each item takes up 1/2 of the row, minus the gap */
+    max-width: calc(50% - 30px); /* Ensures the items are no wider than 1/2 of the row */
 }
 
 .gallery-item img {
@@ -653,8 +594,213 @@ footer {
     .gallery-item {
         flex: 1 1 100%; /* One per row on very small screens */
         max-width: 100%;
+    }}
+
+/* Mobile Responsiveness Adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: 0 10px;
+    }
+
+    /* Adjust header and hero section */
+    header {
+        padding: 1em 0;
+        font-size: 0.9rem;
+    }
+
+    .hero-content h2 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    /* Adjust features section for better spacing */
+    .features-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature {
+        margin: 10px 0;
+        width: 90%;
+    }
+
+    /* Sections adjustments for vertical view */
+    section {
+        padding: 1.5em;
+    }
+
+    .values-grid, .team-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Contact form and other forms */
+    .contact-form, .seller-request-form {
+        width: 90%;
+    }
+
+    /* Login and Register Boxes */
+    .login-container, .register-container {
+        padding: 0 20px;
+    }
+
+    /* Gallery adjustments for stacking */
+    .gallery-grid {
+        gap: 10px;
+    }
+}
+
+/* For smaller devices (max-width: 480px) */
+@media (max-width: 480px) {
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+
+    .features-grid, .values-grid, .team-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature, .value-item, .team-member {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    /* Ensure buttons adjust well */
+    .hero-content .btn, .cta .btn, .marketplace-item button, .seller-request-form button {
+        width: 100%;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    /* Gallery for single-column layout */
+    .gallery-item {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    /* Adjust form elements */
+    .form-group input, .form-group textarea, .login-box input, .register-box input {
+        font-size: 0.9rem;
+    }
+}
+/* Responsive Navigation Bar */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Stack the items vertically */
+        align-items: center;
+        padding: 0;
+    }
+    
+    nav ul li {
+        margin: 5px 0; /* Reduce margin for better spacing */
+    }
+    
+    .hero-content h2 {
+        font-size: 2rem; /* Adjust the hero heading size on mobile */
+    }
+    
+    .hero-content p {
+        font-size: 1rem; /* Adjust hero paragraph font size */
     }
 }
 
 
+  
+  /* Contact form intro section styles */
+ 
+  .contact-intro {
+    padding: 2em;
+    background-color: #f0f8ff;
+    color: #002b5c;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    margin: 30px 0;
+}
 
+.contact-intro h2 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.contact-intro p {
+    font-size: 1.1rem;
+    color: #555;
+}
+  /* Contact form styling */
+  .contact-form {
+    background-color: white;
+    margin: 0 auto;
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+  
+  .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  /* Styles for input and textarea */
+  input[type="email"], textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: #f4f4f4;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+    height: 45px;
+  }
+  
+  input[type="email"]:focus, textarea:focus {
+    border-color: #002b5c;
+  }
+  
+  textarea {
+    resize: none;
+    height: 150px;
+  }
+  
+  /* Button styles */
+  .btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #e5533d;
+  }
+  
+
+  /* Success message styling */
+  #successMessage {
+    display: none;
+    margin-top: 20px;
+    color: green;
+    font-weight: bold;
+  }

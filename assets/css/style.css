@@ -58,12 +58,11 @@ nav ul li a:hover,
 nav ul li a.active {
     background-color: #e0a458;
     border-radius: 5px;
-    
+
 }
 
 /* Hero Section */
 .hero {
-    
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -71,6 +70,10 @@ nav ul li a.active {
     text-align: center;
     color: white;
     transition: background-image 0.5s ease-in-out;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .hero-content {
@@ -101,6 +104,30 @@ nav ul li a.active {
 
 .hero-content .btn:hover {
     background: #e5533d;
+}
+
+/* Slide navigation controls */
+.slideshow-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.prev-slide, .next-slide {
+    cursor: pointer;
+    padding: 16px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+}
+
+.prev-slide:hover, .next-slide:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 /* Features Section */
@@ -272,7 +299,7 @@ footer {
 }
 
 .marketplace-item img {
-    width: 35%; 
+    width: 35%;
     margin-bottom: 15px;
     display: block; /* Ensures the image centers properly */
     margin-left: auto;
@@ -299,7 +326,7 @@ footer {
     margin: 0 0 10px;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 2; 
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
 }
@@ -307,7 +334,7 @@ footer {
 .marketplace-item .price {
     margin: 0 0 10px;
     font-weight: bold;
-    text-align: right; 
+    text-align: right;
 }
 
 .marketplace-item button {
@@ -317,10 +344,10 @@ footer {
     border-radius: 5px;
     border: none;
     transition: background 0.3s ease;
-    text-align: center; 
-    width: 150px; 
-    margin: 0 auto; 
-    display: block; 
+    text-align: center;
+    width: 150px;
+    margin: 0 auto;
+    display: block;
 }
 
 .marketplace-item button:hover {
@@ -716,15 +743,15 @@ footer {
         align-items: center;
         padding: 0;
     }
-    
+
     nav ul li {
         margin: 5px 0; /* Reduce margin for better spacing */
     }
-    
+
     .hero-content h2 {
         font-size: 2rem; /* Adjust the hero heading size on mobile */
     }
-    
+
     .hero-content p {
         font-size: 1rem; /* Adjust hero paragraph font size */
     }
@@ -732,7 +759,7 @@ footer {
 
 
   /* Contact form intro section styles */
- 
+
   .contact-intro {
     padding: 2em;
     background-color: #f0f8ff;
@@ -762,18 +789,18 @@ footer {
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
-  
+
   .form-group {
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
   }
-  
+
   label {
     margin-bottom: 8px;
     font-weight: bold;
   }
-  
+
   /* Styles for input and textarea */
   input[type="email"], textarea {
     width: 100%;
@@ -786,16 +813,16 @@ footer {
     box-sizing: border-box;
     height: 45px;
   }
-  
+
   input[type="email"]:focus, textarea:focus {
     border-color: #002b5c;
   }
-  
+
   textarea {
     resize: none;
     height: 150px;
   }
-  
+
   /* Button styles */
   .btn {
     width: 100%;
@@ -808,11 +835,11 @@ footer {
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  
+
   .btn:hover {
     background-color: #e5533d;
   }
-  
+
 
   /* Success message styling */
   #successMessage {
@@ -821,3 +848,125 @@ footer {
     color: green;
     font-weight: bold;
   }
+
+/* Styles for the forgot password box */
+.forgot-password-body {
+    font-family: 'arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;               /* flexbox enabled */
+    justify-content: center;     /* horizontally center content */
+    align-items: center;         /* vertically center content */
+    height: 100vh;               /* full height of the viewport */
+    background: #f4f4f4 url('/MyWebProject/assets/images/loginbackground.jpg') no-repeat center center;
+    background-size: cover;      /* background covers entire screen */
+}
+
+.forgot-password-box {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    width: 400px;                /* fixed width */
+    max-width: 100%;             /* ensure responsiveness */
+    text-align: center;
+    animation: fadeinup 1.5s ease-out;
+}
+
+/* Heading styles inside the box */
+.forgot-password-box h2 {
+    font-size: 1.8rem; /* Font size for the heading */
+    color: #002b5c; /* Navy color for headings */
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+/* Paragraph styles inside the box */
+.forgot-password-box p {
+    font-size: 1rem; /* Font size for paragraph text */
+    color: #333; /* Dark grey color */
+    margin-bottom: 20px; /* Space below the paragraph */
+}
+
+/* Styles for email input field */
+.forgot-password-box input[type="email"] {
+    width: 100%; /* Full width of the parent */
+    padding: 10px; /* Spacing inside the input */
+    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #ccc; /* Light grey border */
+    margin-bottom: 20px; /* Space below the input field */
+    font-size: 0.95rem; /* Slightly smaller font */
+    background-color: #f4f4f4; /* Light background for input */
+    transition: border-color 0.3s; /* Transition for border color on focus */
+    box-sizing: border-box;
+}
+
+/* Styles for input field on focus */
+.forgot-password-box input[type="email"]:focus {
+    border-color: #002b5c; /* Change border color on focus */
+}
+
+/* Styles for the reset password button */
+.forgot-password-box button {
+    width: 100%; /* Full width */
+    padding: 15px; /* Padding inside the button */
+    border-radius: 5px; /* Rounded corners */
+    border: none; /* No border */
+    background-color: #ff6347; /* Button color */
+    color: white; /* Text color */
+    font-size: 1.1rem; /* Font size for button */
+    cursor: pointer; /* Change cursor to pointer */
+    transition: background-color 0.3s ease; /* Transition for background color on hover */
+}
+
+/* Styles for button on hover */
+.forgot-password-box button:hover {
+    background-color: #e5533d; /* Darker color on hover */
+}
+
+/* Styles for the back to login link button */
+.forgot-password-box a.button-style {
+    display: block; /* Block display for spacing */
+    padding: 15px; /* Padding inside the link */
+    margin-top: 10px; /* Space above the link */
+    background-color: #ffffff; /* White background for link button */
+    color: #002b5c; /* Navy color for the text */
+    text-decoration: none; /* Remove underline */
+    font-size: 1rem; /* Font size for the link */
+    border: 1px solid #002b5c; /* Border for the link button */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transition effects */
+}
+
+/* Styles for link button on hover */
+.forgot-password-box a.button-style:hover {
+    background-color: #002b5c; /* Change background color on hover */
+    color: #ffffff; /* White text on hover */
+}
+
+/* Animation for the form appearance */
+@keyframes fadeInUp {
+    from {
+        opacity: 0; /* Start transparent */
+        transform: translateY(50px); /* Start slightly below */
+    }
+    to {
+        opacity: 1; /* Fully visible */
+        transform: translateY(0); /* Move to original position */
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .forgot-password-box {
+        width: 90%; /* Full width on smaller screens */
+        padding: 30px 20px; /* Reduced padding */
+    }
+    .forgot-password-box h2 {
+        font-size: 1.6rem; /* Adjust heading size */
+    }
+    .forgot-password-box input[type="email"],
+    .forgot-password-box button,
+    .forgot-password-box a.button-style {
+        font-size: 1rem; /* Adjust font size for inputs and buttons */
+    }
+}

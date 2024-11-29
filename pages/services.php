@@ -1,34 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- Character set and viewport settings for responsive design -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Services - StyleHub</title>
-  <!-- Linking external CSS stylesheet -->
-  <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-  <header>
-    <div class="logo">
-      <!-- Logo for the website -->
-      <img src="../images/logo.jpg" alt="StyleHub Logo">
-      <h1>StyleHub</h1>
-    </div>
-    <nav>
-      <ul>
-        <!-- Navigation links to different sections of the site -->
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html" class="active">Services</a></li> <!-- Active link to current page -->
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="login.html" class="login-btn">Login</a></li>
-      </ul>
-    </nav>
-  </header>
 
+<?php
+require_once '../includes/db.php';
+include '../includes/header.php';
+?>
+
+<body>
   <main>
     <section class="services-intro">
       <!-- Introduction to the services offered -->
@@ -42,28 +20,28 @@
       <div class="marketplace-grid">
         <!-- Individual marketplace items -->
         <article class="marketplace-item">
-          <img src="../images/nikeone.jpg" alt="Pair of Nike Running Shoes">
+          <img src="../assets/images/nikeone.jpg" alt="Pair of Nike Running Shoes">
           <h3>Tony</h3>
           <p>Selling: Pair of Nike Running Shoes</p>
           <p><strong>Price: $50</strong></p>
           <button>Contact Seller</button>
         </article>
         <article class="marketplace-item">
-          <img src="../images/jacket.jpg" alt="Black Leather Jacket">
+          <img src="../assets/images/jacket.jpg" alt="Black Leather Jacket">
           <h3>Sara</h3>
           <p>Selling: Black Leather Jacket</p>
           <p><strong>Price: $80</strong></p>
           <button>Contact Seller</button>
         </article>
         <article class="marketplace-item">
-          <img src="../images/dress.jpg" alt="Floral Summer Dress">
+          <img src="../assets/images/dress.jpg" alt="Floral Summer Dress">
           <h3>Alice</h3>
           <p>Selling: Floral Summer Dress</p>
           <p><strong>Price: $40</strong></p>
           <button>Contact Seller</button>
         </article>
         <article class="marketplace-item">
-          <img src="../images/watch.jpg" alt="Classic Wrist Watch">
+          <img src="../assets/images/watch.jpg" alt="Classic Wrist Watch">
           <h3>Michael</h3>
           <p>Selling: Classic Wrist Watch</p>
           <p><strong>Price: $120</strong></p>
@@ -98,6 +76,6 @@
   </footer>
 
   <!-- Linking external JavaScript file -->
-  <script src="../js/script.js"></script>
+  <script src="../assets/js/script.js"></script>
 </body>
 </html>

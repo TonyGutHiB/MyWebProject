@@ -1,33 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- Character set and viewport settings for responsive design -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Register - StyleHub</title>
-  <!-- Linking external CSS stylesheet -->
-  <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-  <header>
-    <div class="logo">
-      <!-- Logo for the website -->
-      <img src="../images/logo.jpg" alt="StyleHub Logo">
-      <h1>StyleHub</h1>
-    </div>
-    <nav>
-      <ul>
-        <!-- Navigation links to different sections of the site -->
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
 
+<?php
+require_once '../includes/db.php';
+include '../includes/header.php';
+?>
+
+<body>
   <main>
     <section class="register-container">
       <div class="register-box">
@@ -52,7 +31,7 @@
           </div>
         </form>
         <!-- Link to login page for users who already have an account -->
-        <p>Already have an account? <a href="login.html" class="login-link">Login here</a></p>
+        <p>Already have an account? <a href="login.php" class="login-link">Login here</a></p>
       </div>
     </section>
   </main>
@@ -63,6 +42,6 @@
   </footer>
 
   <!-- Linking external JavaScript file -->
-  <script src="../js/script.js"></script>
+  <script src="../assets/js/script.js"></script>
 </body>
 </html>

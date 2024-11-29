@@ -36,10 +36,9 @@ include '../includes/header.php';
     </section>
   </main>
 
-  <footer>
-    <!-- Footer section with copyright information -->
-    <p>&copy; 2024 StyleHub. All Rights Reserved.</p>
-  </footer>
+  <?php
+    include '../includes/footer.php';
+  ?>
 
   <!-- Linking external JavaScript file -->
   <script src="../assets/js/script.js"></script>

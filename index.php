@@ -12,7 +12,7 @@ include 'includes/header.php';
         <div class="hero-content">
             <h2>Welcome to the Future of Fashion</h2>
             <p>We create a seamless platform for buying and selling fashion items and accessories with ease and style.</p>
-            <a href="pages/services.html" class="btn">Discover Our Services</a>
+            <a href="pages/services.php" class="btn">Discover Our Services</a>
         </div>
 
         <!-- Slideshow navigation controls -->
@@ -41,9 +41,9 @@ include 'includes/header.php';
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2024 Awesome Website. All Rights Reserved.</p>
-    </footer>
+    <?php
+    include 'includes/footer.php';
+    ?>
 
     <script>
         // Array of background images

@@ -36,10 +36,9 @@ include '../includes/header.php';
     </div>
   </section>
 
-  <!-- Footer Section -->
-  <footer>
-    <p>&copy; 2024 StyleHub. All Rights Reserved.</p>
-  </footer>
+  <?php
+    include '../includes/footer.php';
+  ?>
 
   <script>
     // JavaScript to handle form submission

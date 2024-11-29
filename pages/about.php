@@ -75,14 +75,12 @@ include '../includes/header.php';
 <section class="cta">
     <h2>Ready to Work With Us?</h2> <!-- Section title -->
     <p>Ready to work with us? Get in touch today and let’s bring your fashion vision to life!</p>
-    <a href="contact.html" class="btn">Contact Us</a> <!-- Button linking to the contact page -->
+    <a href="contact.php" class="btn">Contact Us</a> <!-- Button linking to the contact page -->
 </section>
 
-<!-- Footer Section -->
-<footer>
-    <p>&copy; 2024 Awesome Website. All Rights Reserved.</p> <!-- Footer copyright notice -->
-</footer>
+<?php
+include '../includes/footer.php';
+?>
 
 <script src="../assets/js/script.js"></script> <!-- Linking external JavaScript file -->
-</body>
 </html>

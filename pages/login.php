@@ -39,6 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['userID'];
             $_SESSION['email'] = $user['email'];
 
+            // Check if the user is an admin (userID is 1)
+            if ((int)$_SESSION['user_id'] === 1) {
+                $_SESSION['is_admin'] = true;
+            }
+
             // Redirect to home
             header('Location: ../index.php');
         } else {

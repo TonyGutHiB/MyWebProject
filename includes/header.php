@@ -38,6 +38,11 @@ $base_url = '/MyWebProject'
                     echo '<li><a href="' . $base_url . '/pages/dashboard.php">Dashboard</a></li>';
                 }
 
+                // Check if admin
+                if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true) {
+                    echo '<li><a href="' . $base_url . '/pages/admin.php">Admin</a></li>';
+                }
+
                 echo '<li><a href="' . $base_url . '/pages/logout.php">Logout</a></li>';
             } else {
                echo '<li><a href="' . $base_url . '/pages/login.php" class="login-btn">Login</a></li>';

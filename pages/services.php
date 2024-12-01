@@ -62,14 +62,15 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
 
             foreach ($items as $item) {
-                $sellerName = explode('@', $item['email'])[0];
+                $sellerName = explode('@', $item['email'])[0]; // Extract name from email
                 ?>
                 <article class="marketplace-item">
                     <img src="<?php echo htmlspecialchars($item['imageURL']); ?>" alt="<?php echo htmlspecialchars($item['description']); ?>">
                     <h3><?php echo htmlspecialchars($sellerName); ?></h3>
                     <p>Selling: <?php echo htmlspecialchars($item['description']); ?></p>
                     <p><strong>Price: $<?php echo number_format($item['price'], 2); ?></strong></p>
-                    <button>Contact Seller</button>
+                    <!-- Mailto link for contacting seller -->
+                    <a href="mailto:<?php echo htmlspecialchars($item['email']); ?>" class="btn">Contact Seller</a>
                 </article>
                 <?php
             }

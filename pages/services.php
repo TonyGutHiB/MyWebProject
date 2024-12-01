@@ -5,46 +5,40 @@
 require_once '../includes/db.php';
 include '../includes/header.php';
 
-// Handle POST request to insert a new request into the Request table
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve form data
-    $buyerName = trim($_POST['buyer-name']);
-    $itemRequest = trim($_POST['item-request']);
-    $contactInfo = trim($_POST['contact-info']);
+// Handle pagination variables
+$itemsPerPage = 9; // Number of items per page
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1; // Current page
+$offset = ($page - 1) * $itemsPerPage; // Offset for SQL query
 
-    // Validate input
-    if (!empty($buyerName) && !empty($itemRequest) && !empty($contactInfo)) {
-        try {
-            // Insert the request into the Request table
-            $sql = "INSERT INTO Request (name, request, contact) VALUES (:buyerName, :itemRequest, :contactInfo)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':buyerName', $buyerName, PDO::PARAM_STR);
-            $stmt->bindParam(':itemRequest', $itemRequest, PDO::PARAM_STR);
-            $stmt->bindParam(':contactInfo', $contactInfo, PDO::PARAM_STR);
-            $stmt->execute();
+// Fetch total number of items
+$totalItemsQuery = "SELECT COUNT(*) as total FROM Item WHERE stock > 0";
+$totalItemsResult = $conn->query($totalItemsQuery)->fetch(PDO::FETCH_ASSOC);
+$totalItems = $totalItemsResult['total'];
+$totalPages = ceil($totalItems / $itemsPerPage); // Calculate total pages
 
-            // Success message
-            $successMessage = "Your request has been submitted successfully!";
-        } catch (PDOException $e) {
-            $errorMessage = "An error occurred while submitting your request. Please try again.";
-        }
-    } else {
-        $errorMessage = "Please fill in all fields with valid data.";
-    }
-}
-
-// Fetch items to display as before
+// Fetch items for the current page
 $sql = "SELECT i.itemID, i.title, i.description, i.price, i.imageURL, s.sellerID, u.email 
         FROM Item i 
         JOIN Seller s ON i.sellerID = s.sellerID
         JOIN User u ON s.userID = u.userID
         WHERE i.stock > 0 
-        LIMIT 10;"; // We only want to display 10 items
+        LIMIT :limit OFFSET :offset";
 
 $stmt = $conn->prepare($sql);
+$stmt->bindParam(':limit', $itemsPerPage, PDO::PARAM_INT);
+$stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
+
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
 
 <body>
 <main>
@@ -55,26 +49,41 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <section class="marketplace-buyers">
         <h2>Market</h2>
-        <div class="marketplace-grid">
-            <?php
-            if (empty($items)) {
-                echo '<h3>No items found</h3>';
-            }
 
-            foreach ($items as $item) {
-                $itemName = htmlspecialchars($item['title']);
-                ?>
-                <article class="marketplace-item">
-                    <img src="<?php echo htmlspecialchars($item['imageURL']); ?>" alt="<?php echo htmlspecialchars($item['description']); ?>">
-                    <h3><?php echo $itemName; ?></h3>
-                    <p>Selling: <?php echo htmlspecialchars($item['description']); ?></p>
-                    <p><strong>Price: $<?php echo number_format($item['price'], 2); ?></strong></p>
-                    <!-- Mailto link for contacting seller -->
-                    <a href="mailto:<?php echo htmlspecialchars($item['email']); ?>" class="btn">Contact Seller</a>
-                </article>
+        <!-- Dynamic Content Container -->
+        <div id="marketplace-grid-container">
+            <div class="marketplace-grid">
                 <?php
-            }
-            ?>
+                if (empty($items)) {
+                    echo '<h3>No items found</h3>';
+                }
+
+                foreach ($items as $item) {
+                    $itemName = htmlspecialchars($item['title']);
+                    ?>
+                    <article class="marketplace-item">
+                        <img src="<?php echo htmlspecialchars($item['imageURL']); ?>" alt="<?php echo htmlspecialchars($item['description']); ?>">
+                        <h3><?php echo $itemName; ?></h3>
+                        <p>Selling: <?php echo htmlspecialchars($item['description']); ?></p>
+                        <p><strong>Price: $<?php echo number_format($item['price'], 2); ?></strong></p>
+                        <a href="mailto:<?php echo htmlspecialchars($item['email']); ?>" class="btn">Contact Seller</a>
+                    </article>
+                    <?php
+                }
+                ?>
+            </div>
+        </div>
+
+        <!-- Pagination Links -->
+        <div class="pagination">
+            <div style="margin-right: 3px">Page:</div>
+            <a href="#" class="pagination-link" data-page="<?= $page - 1 ?>" <?= $page <= 1 ? 'style="display:none;"' : '' ?>>Previous</a>
+            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                <a href="#" class="pagination-link <?= $i === $page ? 'active' : '' ?>" data-page="<?= $i ?>">
+                    <?= $i ?>
+                </a>
+            <?php endfor; ?>
+            <a href="#" class="pagination-link" data-page="<?= $page + 1 ?>" <?= $page >= $totalPages ? 'style="display:none;"' : '' ?>>Next</a>
         </div>
     </section>
 
@@ -82,15 +91,6 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <section class="marketplace-sellers">
         <h2>Looking for Something?</h2>
         <p>If you're searching for a specific service or product, request it here and sellers can contact you!</p>
-
-        <?php
-        if (!empty($successMessage)) {
-            echo '<div class="success-message">' . htmlspecialchars($successMessage) . '</div>';
-        }
-        if (!empty($errorMessage)) {
-            echo '<div class="error-message">' . htmlspecialchars($errorMessage) . '</div>';
-        }
-        ?>
 
         <form action="services.php" method="post" class="seller-request-form">
             <label for="buyer-name">Your Name:</label>
@@ -111,6 +111,36 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 include '../includes/footer.php';
 ?>
 
-<script src="../assets/js/script.js"></script>
+<script>
+    $(document).on('click', '.pagination-link', function(e) {
+        e.preventDefault();
+
+        const page = $(this).data('page');
+        if (!page) return;
+
+        // Make an AJAX request to fetch items for the selected page
+        $.ajax({
+            url: 'services.php',
+            type: 'GET',
+            data: { page: page },
+            success: function(response) {
+                // Replace the marketplace grid with new content
+                $('#marketplace-grid-container').html($(response).find('#marketplace-grid-container').html());
+
+                // Update the pagination links
+                $('.pagination').html($(response).find('.pagination').html());
+
+                // Scroll to the top of the marketplace section
+                $('html, body').animate({
+                    scrollTop: $('.marketplace-buyers').offset().top
+                }, 800); // 800ms animation duration
+            },
+            error: function() {
+                alert('Failed to load items. Please try again.');
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

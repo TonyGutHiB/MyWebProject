@@ -47,4 +47,4 @@ CREATE TABLE IF NOT EXISTS Ticket
 
 -- Inserts the admin user, password is 'password'
 INSERT INTO User (email, password)
-VALUES ('admin@example.com', '$2a$10$CcDrWRxSikOsFUCgs7l0FeyAefAmJ5Q506b/6pl8SAumhGcTNw5zi');
+VALUES ('admin@email.com', '$2a$10$CcDrWRxSikOsFUCgs7l0FeyAefAmJ5Q506b/6pl8SAumhGcTNw5zi');

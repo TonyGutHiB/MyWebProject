@@ -1074,7 +1074,7 @@ textarea {
     background: url('../images/loginbackground.jpg') no-repeat center center/cover;
 }
 
-.admin-container table {
+.admin-table {
     margin: 0 auto;
     width: 100%;
     max-width: 800px;
@@ -1152,4 +1152,22 @@ textarea {
     max-width: 500px;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination-link {
+    padding: 0 5px;
+}
+
+.pagination-link.active {
+    background-color: #ff6347; /* Highlight the active page */
+    color: #fff; /* Change text color for contrast */
+    font-weight: bold; /* Make the active page stand out */
+    pointer-events: none; /* Disable clicking on the active page */
+    border-radius: 10px;
 }

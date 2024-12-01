@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <?php
 require_once '../includes/db.php';
 include '../includes/header.php';
@@ -15,33 +18,31 @@ $successMessage = '';
 $errorMessage = '';
 $users = [];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Promote a user to seller
-    if (isset($_POST['promote_user_id'])) {
-        $userID = intval($_POST['promote_user_id']);
+// Promote a user to seller
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['promote_user_id'])) {
+    $userID = intval($_POST['promote_user_id']);
 
-        try {
-            // Check if the user is already a seller
-            $checkQuery = "SELECT COUNT(*) FROM Seller WHERE userID = :userID";
-            $stmt = $conn->prepare($checkQuery);
+    try {
+        // Check if the user is already a seller
+        $checkQuery = "SELECT COUNT(*) FROM Seller WHERE userID = :userID";
+        $stmt = $conn->prepare($checkQuery);
+        $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+        $stmt->execute();
+        $isSeller = $stmt->fetchColumn();
+
+        if ($isSeller) {
+            $errorMessage = "This user is already a seller.";
+        } else {
+            // Promote the user to seller
+            $insertQuery = "INSERT INTO Seller (userID) VALUES (:userID)";
+            $stmt = $conn->prepare($insertQuery);
             $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
             $stmt->execute();
-            $isSeller = $stmt->fetchColumn();
 
-            if ($isSeller) {
-                $errorMessage = "This user is already a seller.";
-            } else {
-                // Promote the user to seller
-                $insertQuery = "INSERT INTO Seller (userID) VALUES (:userID)";
-                $stmt = $conn->prepare($insertQuery);
-                $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
-                $stmt->execute();
-
-                $successMessage = "User promoted to seller successfully!";
-            }
-        } catch (PDOException $e) {
-            $errorMessage = "An error occurred while promoting the user. Please try again.";
+            $successMessage = "User promoted to seller successfully!";
         }
+    } catch (PDOException $e) {
+        $errorMessage = "An error occurred while promoting the user. Please try again.";
     }
 }
 
@@ -62,8 +63,14 @@ if (isset($_GET['search_email'])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
 <body>
 <main>
     <section class="admin-intro">
@@ -87,47 +94,72 @@ if (isset($_GET['search_email'])) {
                 <input type="text" id="search_email" name="search_email" placeholder="Enter email to search">
                 <button type="submit" class="btn">Search</button>
             </div>
-            <!-- Display Search Results -->
-            <?php if (!empty($users)): ?>
-                <h3>Search Results:</h3>
-                <table class="search-result-table">
-                    <thead>
-                    <tr>
-                        <th>User ID</th>
-                        <th>Email</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($users as $user): ?>
+
+            <div id="search-results">
+                <?php if (!empty($users)): ?>
+                    <h3>Search Results:</h3>
+                    <table class="admin-table">
+                        <thead>
                         <tr>
-                            <td><?= htmlspecialchars($user['userID']) ?></td>
-                            <td>
-                                <div class="email-scroll">
-                                <?= htmlspecialchars($user['email']) ?>
-                                </div>
-                            </td>
-                        <td>
-                            <!-- Promote to seller button -->
-                            <form action="admin.php" method="post" style="display:inline;">
-                                <input type="hidden" name="promote_user_id"
-                                       value="<?= htmlspecialchars($user['userID']) ?>">
-                                <button type="submit" class="text-link">Promote to Seller</button>
-                            </form>
-                        </td>
+                            <th>User ID</th>
+                            <th>Email</th>
+                            <th>Actions</th>
                         </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
-            <?php elseif (isset($_GET['search_email'])): ?>
-                <p class="no-users">No users found matching your search.</p>
-            <?php endif; ?>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($users as $user): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($user['userID']) ?></td>
+                                <td>
+                                    <div class="email-scroll">
+                                        <?= htmlspecialchars($user['email']) ?>
+                                    </div>
+                                </td>
+                                <td>
+                                    <form action="admin.php" method="post" style="display:inline;">
+                                        <input type="hidden" name="promote_user_id"
+                                               value="<?= htmlspecialchars($user['userID']) ?>">
+                                        <button type="submit" class="text-link">Promote to Seller</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php elseif (isset($_GET['search_email'])): ?>
+                    <p class="no-users">No users found matching your search.</p>
+                <?php endif; ?>
+            </div>
         </form>
+
+        <!-- Search Results -->
     </section>
 </main>
 
-<?php
-include '../includes/footer.php';
-?>
+<?php include '../includes/footer.php'; ?>
+
+<script>
+    $(document).ready(function () {
+        $('#searchForm').on('submit', function (e) {
+            e.preventDefault(); // Prevent default form submission
+
+            const searchEmail = $('#search_email').val(); // Get email input value
+
+            $.ajax({
+                url: 'admin.php', // Send request to the same script
+                type: 'GET',
+                data: {search_email: searchEmail}, // Send the email as a parameter
+                success: function (response) {
+                    // Extract the new content and update the search-results section
+                    const newContent = $(response).find('#search-results').html();
+                    $('#search-results').html(newContent);
+                },
+                error: function () {
+                    alert('An error occurred while searching. Please try again.');
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

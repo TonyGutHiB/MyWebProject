@@ -4,6 +4,40 @@
 <?php
 require_once '../includes/db.php';
 include '../includes/header.php';
+
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Check if the form fields are not empty
+    if (!empty($_POST['email']) && !empty($_POST['password'])) {
+        // Get the user details from the database
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $sql = "SELECT * FROM User WHERE email = :email";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Verify the password
+        if ($user && password_verify($password, $user['password'])) {
+
+            // Set the session variables
+            $_SESSION['loggedin'] = true;
+            $_SESSION['user_id'] = $user['userID'];
+            $_SESSION['email'] = $user['email'];
+
+            // Redirect to the dashboard
+            header('Location: ../index.php');
+        } else {
+            $error_message = 'Invalid email or password.';
+        }
+    } else {
+        $error_message = 'Please fill in all the required fields.';
+    }
+}
+
 ?>
 
 <body>
@@ -12,7 +46,7 @@ include '../includes/header.php';
         <div class="login-box">
             <h2>Login</h2>
             <!-- Login form for user authentication -->
-            <form id="loginForm" action="#" method="post">
+            <form id="loginForm" action="login.php" method="post">
                 <div class="form-group">
                     <label for="loginEmail">Email:</label>
                     <input type="email" id="loginEmail" name="email" placeholder="Enter your email" required>
@@ -27,6 +61,10 @@ include '../includes/header.php';
                     <button type="submit" class="btn">Login</button>
                 </div>
             </form>
+
+            <?php if (!empty($error_message)): ?>
+                <div class="error-message"><?= htmlspecialchars($error_message) ?></div>
+            <?php endif; ?>
 
             <!-- Links for registration and password recovery -->
             <p>Don't have an account? <a href="register.php" class="register-link">Register here</a></p>

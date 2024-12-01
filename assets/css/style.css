@@ -999,3 +999,17 @@ footer {
         font-size: 1rem; /* Adjust font size for inputs and buttons */
     }
 }
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.success-message {
+    color: green;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}

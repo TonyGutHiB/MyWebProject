@@ -30,10 +30,9 @@ CREATE TABLE IF NOT EXISTS Item
 CREATE TABLE IF NOT EXISTS Request
 (
     requestID INT AUTO_INCREMENT PRIMARY KEY,
-    userID    INT          NOT NULL,
     name      VARCHAR(255) NOT NULL,
-    email     VARCHAR(255) NOT NULL,
-    FOREIGN KEY (userID) REFERENCES User (userID) ON DELETE CASCADE
+    contact   VARCHAR(255) NOT NULL,
+    request   TEXT         NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Ticket

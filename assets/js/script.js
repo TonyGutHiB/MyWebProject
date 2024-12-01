@@ -1,26 +1,3 @@
-// Handle form submission for login with validation
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-
-    // Email validation regex pattern
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailPattern.test(email)) {
-        alert('Please enter a valid email.');
-        return;
-    }
-
-    if (password.length < 8) {
-        alert('Password must be at least 8 characters long.');
-        return;
-    }
-
-    alert('Login form submitted successfully!');
-});
-
 // Handle form submission for registration with validation
 document.getElementById('registerForm')?.addEventListener('submit', function(event) {
     event.preventDefault();

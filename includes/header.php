@@ -32,7 +32,12 @@ $base_url = '/MyWebProject'
             <?php
             // Check if a user is logged in
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-                echo '<li><a href="' . $base_url . '/pages/dashboard.php">Dashboard</a></li>';
+
+                // Check if seller
+                if (isset($_SESSION['is_seller']) && $_SESSION['is_seller'] === true) {
+                    echo '<li><a href="' . $base_url . '/pages/dashboard.php">Dashboard</a></li>';
+                }
+
                 echo '<li><a href="' . $base_url . '/pages/logout.php">Logout</a></li>';
             } else {
                echo '<li><a href="' . $base_url . '/pages/login.php" class="login-btn">Login</a></li>';

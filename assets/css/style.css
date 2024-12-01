@@ -47,6 +47,7 @@ nav ul {
 nav ul li {
     margin: 0 15px;
 }
+
 nav ul li a {
     color: white;
     text-decoration: none;
@@ -392,6 +393,7 @@ footer {
 .seller-request-form button:hover {
     background-color: #218838;
 }
+
 /* Login Page Styles */
 .login-container {
     display: flex;
@@ -439,7 +441,7 @@ footer {
     font-size: 1rem;
     background-color: #f4f4f4;
     transition: border-color 0.3s;
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 .login-box input[type="email"]:focus,
@@ -586,7 +588,6 @@ footer {
 }
 
 
-
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     .register-box {
@@ -605,6 +606,7 @@ footer {
         font-size: 1rem;
     }
 }
+
 /* Gallery Section Styles */
 
 .gallery-container {
@@ -616,11 +618,11 @@ footer {
 .gallery-grid {
     display: flex;
     flex-direction: column; /* Stack elements vertically */
-    align-items: center;    /* Center items horizontally */
+    align-items: center; /* Center items horizontally */
     justify-content: center; /* Center items vertically */
     gap: 15px; /* Space between elements */
     margin: 0;
-    height: 70vh;
+    height: 60vh;
 }
 
 .gallery-grid h3 {
@@ -660,7 +662,8 @@ footer {
     .gallery-item {
         flex: 1 1 100%; /* One per row on very small screens */
         max-width: 100%;
-    }}
+    }
+}
 
 /* Mobile Responsiveness Adjustments */
 @media (max-width: 768px) {
@@ -757,6 +760,7 @@ footer {
         font-size: 0.9rem;
     }
 }
+
 /* Responsive Navigation Bar */
 @media (max-width: 768px) {
     nav ul {
@@ -779,9 +783,9 @@ footer {
 }
 
 
-  /* Contact form intro section styles */
+/* Contact form intro section styles */
 
-  .contact-intro {
+.contact-intro {
     padding: 2em;
     background-color: #f0f8ff;
     color: #002b5c;
@@ -808,8 +812,8 @@ footer {
     background: url('../images/loginbackground.jpg') no-repeat center center/cover;
 }
 
-  /* Contact form styling */
-  .contact-form {
+/* Contact form styling */
+.contact-form {
     background-color: white;
     margin: 0 auto 25px;
     padding: 30px;
@@ -819,19 +823,19 @@ footer {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-  .form-group {
+.form-group {
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-  }
+}
 
-  label {
+label {
     margin-bottom: 8px;
     font-weight: bold;
-  }
+}
 
-  /* Styles for input and textarea */
-  input[type="email"], textarea {
+/* Styles for input and textarea */
+input[type="email"], textarea {
     width: 100%;
     padding: 12px;
     border-radius: 5px;
@@ -841,19 +845,19 @@ footer {
     transition: border-color 0.3s;
     box-sizing: border-box;
     height: 45px;
-  }
+}
 
-  input[type="email"]:focus, textarea:focus {
+input[type="email"]:focus, textarea:focus {
     border-color: #002b5c;
-  }
+}
 
-  textarea {
+textarea {
     resize: none;
     height: 150px;
-  }
+}
 
-  /* Button styles */
-  .btn {
+/* Button styles */
+.btn {
     width: 100%;
     padding: 12px;
     background-color: #ff6347;
@@ -863,32 +867,32 @@ footer {
     font-size: 1.1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
+}
 
-  .btn:hover {
+.btn:hover {
     background-color: #e5533d;
-  }
+}
 
 
-  /* Success message styling */
-  #successMessage {
+/* Success message styling */
+#successMessage {
     display: none;
     margin-top: 20px;
     color: green;
     font-weight: bold;
-  }
+}
 
 /* Styles for the forgot password box */
 .forgot-password-body {
     font-family: 'arial', sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;               /* flexbox enabled */
-    justify-content: center;     /* horizontally center content */
-    align-items: center;         /* vertically center content */
-    height: 100vh;               /* full height of the viewport */
+    display: flex; /* flexbox enabled */
+    justify-content: center; /* horizontally center content */
+    align-items: center; /* vertically center content */
+    height: 100vh; /* full height of the viewport */
     background: #f4f4f4 url('/MyWebProject/assets/images/loginbackground.jpg') no-repeat center center;
-    background-size: cover;      /* background covers entire screen */
+    background-size: cover; /* background covers entire screen */
 }
 
 .forgot-password-box {
@@ -896,8 +900,8 @@ footer {
     padding: 40px 30px;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    width: 400px;                /* fixed width */
-    max-width: 100%;             /* ensure responsiveness */
+    width: 400px; /* fixed width */
+    max-width: 100%; /* ensure responsiveness */
     text-align: center;
     animation: fadeinup 1.5s ease-out;
 }
@@ -990,9 +994,11 @@ footer {
         width: 90%; /* Full width on smaller screens */
         padding: 30px 20px; /* Reduced padding */
     }
+
     .forgot-password-box h2 {
         font-size: 1.6rem; /* Adjust heading size */
     }
+
     .forgot-password-box input[type="email"],
     .forgot-password-box button,
     .forgot-password-box a.button-style {
@@ -1012,4 +1018,12 @@ footer {
     font-weight: bold;
     margin-top: 20px;
     margin-bottom: 10px;
+}
+
+.marketplace-grid {
+    text-align: center;
+    margin: 20px 0;
+    color: #002b5c;
+    font-size: 1rem;
+    width: 100%;
 }

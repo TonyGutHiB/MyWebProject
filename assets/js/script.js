@@ -1,33 +1,3 @@
-// Handle form submission for registration with validation
-document.getElementById('registerForm')?.addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const email = document.getElementById('registerEmail').value;
-    const password = document.getElementById('registerPassword').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
-
-    // Email validation
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailPattern.test(email)) {
-        alert('Please enter a valid email.');
-        return;
-    }
-
-    // Password validation: min length 8 characters
-    if (password.length < 8) {
-        alert('Password must be at least 8 characters long.');
-        return;
-    }
-
-    if (password !== confirmPassword) {
-        alert('Passwords do not match.');
-        return;
-    }
-
-    alert('Registration form submitted successfully!');
-});
-
 // Array of background images for the hero section
 const images = [
     'url(../picone.jpg)',

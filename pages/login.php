@@ -23,12 +23,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Verify the password
         if ($user && password_verify($password, $user['password'])) {
 
+            // Check if the user is also a seller
+            $sql = "SELECT * FROM Seller WHERE userID = :userID";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':userID', $user['userID']);
+            $stmt->execute();
+            $seller = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($seller) {
+                $_SESSION['is_seller'] = true;
+            }
+
             // Set the session variables
             $_SESSION['loggedin'] = true;
             $_SESSION['user_id'] = $user['userID'];
             $_SESSION['email'] = $user['email'];
 
-            // Redirect to the dashboard
+            // Redirect to home
             header('Location: ../index.php');
         } else {
             $error_message = 'Invalid email or password.';

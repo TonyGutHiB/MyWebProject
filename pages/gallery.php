@@ -4,7 +4,7 @@
 <?php
 require_once '../includes/db.php';
 include '../includes/header.php';
-$sql = "SELECT imageURL FROM Item WHERE stock > 0;";
+$sql = "SELECT imageURL FROM Item WHERE stock > 0 LIMIT 10;";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();

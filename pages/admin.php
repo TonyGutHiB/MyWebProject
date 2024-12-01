@@ -112,7 +112,7 @@ if (isset($_GET['search_email'])) {
                             <form action="admin.php" method="post" style="display:inline;">
                                 <input type="hidden" name="promote_user_id"
                                        value="<?= htmlspecialchars($user['userID']) ?>">
-                                <button type="submit" class="promote-btn">Promote to Seller</button>
+                                <button type="submit" class="text-link">Promote to Seller</button>
                             </form>
                         </td>
                         </tr>

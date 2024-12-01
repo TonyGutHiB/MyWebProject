@@ -18,10 +18,10 @@ $successMessage = '';
 $errorMessage = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get seller ID from the session (assuming it's stored in $_SESSION)
     $sellerID = $_SESSION['seller_id'];
 
     // Retrieve form data
+    $title = trim($_POST['title']);
     $description = trim($_POST['description']);
     $price = trim($_POST['price']);
     $stock = trim($_POST['stock']);
@@ -49,12 +49,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Validate input
-    if (empty($errorMessage) && !empty($description) && !empty($price) && !empty($stock) && is_numeric($price) && is_numeric($stock)) {
+    if (empty($errorMessage) && !empty($title) && !empty($description) && !empty($price) && !empty($stock) && is_numeric($price) && is_numeric($stock)) {
         try {
             // Insert the item into the Item table
-            $sql = "INSERT INTO Item (sellerID, description, price, stock, imageURL) VALUES (:sellerID, :description, :price, :stock, :imageURL)";
+            $sql = "INSERT INTO Item (sellerID, title, description, price, stock, imageURL) VALUES (:sellerID, :title, :description, :price, :stock, :imageURL)";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':sellerID', $sellerID, PDO::PARAM_INT);
+            $stmt->bindParam(':title', $title, PDO::PARAM_STR);
             $stmt->bindParam(':description', $description, PDO::PARAM_STR);
             $stmt->bindParam(':price', $price, PDO::PARAM_STR);
             $stmt->bindParam(':stock', $stock, PDO::PARAM_INT);
@@ -92,18 +93,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Form to add a new item -->
             <form id="itemForm" action="dashboard.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
+                    <label for="title">Item Title:</label>
+                    <input type="text" id="title" name="title" placeholder="Enter the item title" required>
+                </div>
+
+                <div class="form-group">
                     <label for="description">Item Description:</label>
-                    <textarea id="description" name="description" rows="3" placeholder="Enter a description of the item" required></textarea>
+                    <textarea id="description" name="description" rows="3" placeholder="Enter a description of the item"
+                              required></textarea>
                 </div>
 
-                <div class="form-group">
-                    <label for="price">Price ($):</label>
-                    <input type="text" id="price" name="price" placeholder="Enter the price" required>
-                </div>
+                <div class="form-group-inline">
+                    <div class="form-group">
+                        <label for="price">Price ($):</label>
+                        <input type="number" id="price" name="price" placeholder="Enter the price" required>
+                    </div>
 
-                <div class="form-group">
-                    <label for="stock">Stock Quantity:</label>
-                    <input type="text" id="stock" name="stock" placeholder="Enter the stock quantity" required>
+                    <div class="form-group">
+                        <label for="stock">Stock Quantity:</label>
+                        <input type="number" id="stock" name="stock" placeholder="Enter the stock quantity" required>
+                    </div>
                 </div>
 
                 <div class="form-group">

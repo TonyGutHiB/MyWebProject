@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($seller) {
                 $_SESSION['is_seller'] = true;
+                $_SESSION['seller_id'] = $seller['sellerID'];
             }
 
             // Set the session variables

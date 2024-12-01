@@ -30,6 +30,10 @@ body {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 header {
     background-color: #002b5c; /* Dark blue */
     color: white;
@@ -294,13 +298,14 @@ footer {
 
 /* Marketplace Styles */
 .marketplace-item {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ccc;
-    height: 100%;
+    flex: 0 0 calc(33% - 20px); /* Take up 50% of the width minus gap space */
+    box-sizing: border-box; /* Include padding and border in the width */
+    background-color: #fff; /* Optional: Add background for better visibility */
+    padding: 15px; /* Add padding inside the items */
+    border: 1px solid #ccc; /* Optional: Add a border for separation */
+    border-radius: 10px; /* Optional: Add rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+    text-align: center; /* Center-align text for uniformity */
 }
 
 .marketplace-item img {
@@ -617,12 +622,12 @@ footer {
 
 .gallery-grid {
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center; /* Center items horizontally */
-    justify-content: center; /* Center items vertically */
-    gap: 15px; /* Space between elements */
-    margin: 0;
-    height: 60vh;
+    flex-wrap: wrap; /* Allow images to wrap to the next row */
+    gap: 20px; /* Add space between images */
+    justify-content: space-evenly; /* Distribute images evenly */
+    padding: 20px; /* Add padding around the grid */
+    max-width: 1200px; /* Limit the maximum width of the grid */
+    margin: 0 auto; /* Center the grid within the page */
 }
 
 .gallery-grid h3 {
@@ -634,16 +639,17 @@ footer {
 }
 
 .gallery-item {
-    flex: 1 1 calc(50% - 30px); /* Each item takes up 1/2 of the row, minus the gap */
-    max-width: calc(50% - 30px); /* Ensures the items are no wider than 1/2 of the row */
+    flex: 0 0 calc(45% - 20px); /* Each image takes approximately 45% of the container width */
+    box-sizing: border-box; /* Include padding and border in width calculations */
+    text-align: center; /* Center the content within the item */
 }
 
 .gallery-item img {
-    width: 100%; /* Ensures images take up the full width of the gallery item */
-    height: auto; /* Maintains the aspect ratio of the image */
-    border-radius: 10px; /* Optional: Adds a slight border-radius for a rounded look */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow effect */
-    transition: transform 0.3s ease; /* Smooth hover effect */
+    width: 100%; /* Ensure the image fits its container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    object-fit: cover; /* Ensures the image covers the container without distortion */
 }
 
 .gallery-item img:hover {
@@ -827,6 +833,38 @@ footer {
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
+}
+
+.form-group input[type="text"], textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: #f4f4f4;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+    height: 45px;
+}
+
+.form-group-inline {
+    display: flex;
+    justify-content: space-between; /* Space out fields horizontally */
+    gap: 20px; /* Add space between the fields */
+}
+
+.form-group-inline .form-group {
+    flex: 1; /* Allow fields to share space equally */
+    min-width: 0; /* Prevent overflowing issues */
+}
+
+.form-group-inline .form-group input[type="number"] {
+    width: 100%; /* Ensure inputs take up full available width */
+    background-color: #f4f4f4;
+    transition: border-color 0.3s;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 label {
@@ -1021,11 +1059,10 @@ textarea {
 }
 
 .marketplace-grid {
-    text-align: center;
-    margin: 20px 0;
-    color: #002b5c;
-    font-size: 1rem;
-    width: 100%;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next row */
+    gap: 20px; /* Add space between items */
+    justify-content: space-evenly; /* Evenly distribute items */
 }
 
 .admin-container {
@@ -1074,7 +1111,7 @@ textarea {
     margin-bottom: 10px;
 }
 
-.promote-btn {
+.text-link {
     width: 100%;
     padding: 12px;
     color: #ff6347;
@@ -1086,7 +1123,7 @@ textarea {
     transition: background-color 0.3s ease;
 }
 
-.promote-btn:hover {
+.text-link:hover {
     background-color: #f4f4f4;
 }
 
@@ -1097,4 +1134,22 @@ textarea {
     text-overflow: ellipsis; /* Optional: show ellipsis for overflowing text */
     padding: 20px; /* Add padding for better readability */
     font-size: 0.9rem; /* Adjust font size for long emails */
+}
+
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    background: url('../images/loginbackground.jpg') no-repeat center center/cover;
+}
+
+.dashboard-form {
+    background-color: white;
+    margin: 0 auto 25px;
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }

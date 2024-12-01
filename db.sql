@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS Item
 (
     itemID      INT AUTO_INCREMENT PRIMARY KEY,
     sellerID    INT            NOT NULL,
+    title       VARCHAR(255)   NOT NULL,
     price       DECIMAL(10, 2) NOT NULL,
     description TEXT           NOT NULL,
     stock       INT            NOT NULL,

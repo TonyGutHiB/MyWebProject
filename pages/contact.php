@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Show a login prompt if not logged in -->
             <div class="login-prompt">
                 <p>You must be logged in to send a message<br><br>
-                    <a href="login.php" class="btn">Log In</a>   or   <a href="register.php" class="btn">Register</a></p>
+                    <a href="login.php" class="text-link">Log In</a> or <a href="register.php" class="text-link">Register</a></p>
             </div>
         <?php endif; ?>
     </section>

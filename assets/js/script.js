@@ -56,3 +56,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Restrict invalid input for number fields
+document.querySelectorAll('input[type="number"]').forEach(function (input) {
+    input.addEventListener('input', function () {
+        // Remove invalid characters like letters and symbols
+        this.value = this.value.replace(/[^0-9.]/g, '');
+    });
+});
+
+document.addEventListener('paste', function(event) {
+    const pasteData = (event.clipboardData || window.clipboardData).getData('text');
+    if (!/^\d*\.?\d*$/.test(pasteData)) {
+        event.preventDefault();
+    }
+});

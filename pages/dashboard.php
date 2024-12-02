@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
 require_once '../includes/db.php';
-include '../includes/header.php';
 
 // Start the session to access logged-in user information
 session_start();
@@ -70,6 +66,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (empty($errorMessage)) {
         $errorMessage = "Please fill in all fields with valid data.";
     }
+
+    // Return response in JSON format for AJAX
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        echo json_encode(['success' => !empty($successMessage), 'message' => $successMessage ?: $errorMessage]);
+        exit;
+    }
+} else {
+    include '../includes/header.php';
 }
 ?>
 
@@ -82,13 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <section class="dashboard-container">
         <div class="dashboard-form">
-            <!-- Display messages -->
-            <?php if (!empty($successMessage)): ?>
-                <div class="success-message"><?= htmlspecialchars($successMessage) ?></div>
-            <?php endif; ?>
-            <?php if (!empty($errorMessage)): ?>
-                <div class="error-message"><?= htmlspecialchars($errorMessage) ?></div>
-            <?php endif; ?>
+            <!-- Display messages dynamically -->
+            <div id="responseMessage"></div>
 
             <!-- Form to add a new item -->
             <form id="itemForm" action="dashboard.php" method="post" enctype="multipart/form-data">
@@ -132,4 +131,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 include '../includes/footer.php';
 ?>
 </body>
-</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Handle form submission via AJAX
+        $('#itemForm').on('submit', function (e) {
+            e.preventDefault(); // Prevent default form submission
+
+            const formData = new FormData(this); // Serialize the form data
+
+            // Send the AJAX request
+            $.ajax({
+                url: 'dashboard.php', // Send request to the same page
+                type: 'POST',
+                data: formData, // Send the form data
+                contentType: false, // Don't set content type
+                processData: false, // Don't process the data
+                success: function (response) {
+                    const data = JSON.parse(response);
+
+                    // Display success or error message
+                    if (data.success) {
+                        $('#responseMessage').html('<div class="success-message">' + data.message + '</div>');
+                    } else {
+                        $('#responseMessage').html('<div class="error-message">' + data.message + '</div>');
+                    }
+                },
+                error: function () {
+                    alert('An error occurred. Please try again.');
+                }
+            });
+        });
+    });
+</script>

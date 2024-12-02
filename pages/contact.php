@@ -58,12 +58,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <section class="contact-container">
     <section class="contact-form">
         <!-- Display messages -->
-        <?php if (!empty($successMessage)): ?>
-            <div class="success-message"><?= htmlspecialchars($successMessage) ?></div>
-        <?php endif; ?>
-        <?php if (!empty($errorMessage)): ?>
-            <div class="error-message"><?= htmlspecialchars($errorMessage) ?></div>
-        <?php endif; ?>
+        <div id="responseMessages">
+            <!-- Success and Error messages will be loaded dynamically here -->
+            <?php if (!empty($successMessage)): ?>
+                <div class="success-message"><?= htmlspecialchars($successMessage) ?></div>
+            <?php endif; ?>
+            <?php if (!empty($errorMessage)): ?>
+                <div class="error-message"><?= htmlspecialchars($errorMessage) ?></div>
+            <?php endif; ?>
+        </div>
 
         <!-- Check if user is logged in -->
         <?php if ($_SESSION['loggedin']): ?>
@@ -76,8 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group">
                     <label for="message">Your Message:</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Write your message here"
-                              required></textarea>
+                    <textarea id="message" name="message" rows="5" placeholder="Write your message here" required></textarea>
                 </div>
 
                 <div class="form-group" style="margin-top: 30px;">
@@ -97,5 +99,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php
 include '../includes/footer.php';
 ?>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#contactForm').submit(function(e) {
+            e.preventDefault(); // Prevent the form from submitting normally
+
+            const formData = $(this).serialize(); // Serialize form data
+
+            // Disable the submit button to prevent multiple submissions
+            $('button[type="submit"]').attr('disabled', true).text('Sending...');
+
+            // Send the form data via AJAX
+            $.ajax({
+                url: 'contact.php',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    // Dynamically update success or error message
+                    $('#responseMessages').html($(response).find('#responseMessages').html());
+
+                    // Re-enable the submit button after response
+                    $('button[type="submit"]').attr('disabled', false).text('Send Message');
+
+                    // Optionally, clear the form fields after successful submission
+                    $('#contactForm')[0].reset();
+                },
+                error: function() {
+                    // In case of error, show a generic error message
+                    $('#responseMessages').html('<div class="error-message">An error occurred. Please try again later.</div>');
+                    $('button[type="submit"]').attr('disabled', false).text('Send Message');
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 </html>

@@ -30,6 +30,10 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // Loop through the items and display them
     foreach ($items as $item) {
+        // Check if imageURL is empty or null
+        if (empty($item['imageURL'])) {
+            continue; // Skip this iteration if no image URL
+        }
         ?>
         <div class="gallery-item">
             <a href="<?php echo htmlspecialchars($item['imageURL']); ?>" target="_blank">

@@ -311,9 +311,19 @@ footer {
 .marketplace-item img {
     width: 35%;
     margin-bottom: 15px;
+    object-fit: cover;
     display: block; /* Ensures the image centers properly */
     margin-left: auto;
     margin-right: auto;
+}
+
+.marketplace-item img[alt]:empty {
+    background-color: #f0f0f0; /* Light gray background for missing image */
+    color: #333; /* Dark text color */
+    text-align: center; /* Center the alt text */
+    line-height: 200px; /* Vertically center the alt text */
+    font-size: 14px; /* Adjust font size as needed */
+    font-weight: bold;
 }
 
 .marketplace-item .content {

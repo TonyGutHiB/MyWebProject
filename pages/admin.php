@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
 require_once '../includes/db.php';
-include '../includes/header.php';
 
 // Start session to access logged-in user information
 session_start();
@@ -18,9 +14,10 @@ $successMessage = '';
 $errorMessage = '';
 $users = [];
 
-// Promote a user to seller
+// Handle the promote user functionality via AJAX POST request
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['promote_user_id'])) {
     $userID = intval($_POST['promote_user_id']);
+    $response = ['success' => false, 'message' => ''];
 
     try {
         // Check if the user is already a seller
@@ -31,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['promote_user_id'])) {
         $isSeller = $stmt->fetchColumn();
 
         if ($isSeller) {
-            $errorMessage = "This user is already a seller.";
+            $response['message'] = "User with ID $userID is already a seller.";
         } else {
             // Promote the user to seller
             $insertQuery = "INSERT INTO Seller (userID) VALUES (:userID)";
@@ -39,17 +36,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['promote_user_id'])) {
             $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
             $stmt->execute();
 
-            $successMessage = "User promoted to seller successfully!";
+            $response['success'] = true;
+            $response['message'] = "User promoted to seller successfully!";
         }
     } catch (PDOException $e) {
-        $errorMessage = "An error occurred while promoting the user. Please try again.";
+        $response['message'] = "An error occurred while promoting the user. Please try again.";
     }
+
+    // If the request is AJAX, return a JSON response
+    if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
+        echo json_encode($response);
+        exit;
+    }
+} else {
+    include '../includes/header.php';
 }
 
 // Search users by email
 if (isset($_GET['search_email'])) {
     $email = trim($_GET['search_email']);
-
     try {
         $searchQuery = "SELECT userID, email FROM User WHERE email LIKE :email";
         $stmt = $conn->prepare($searchQuery);
@@ -63,6 +68,8 @@ if (isset($_GET['search_email'])) {
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,7 +77,6 @@ if (isset($_GET['search_email'])) {
     <link rel="stylesheet" href="../assets/css/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-
 <body>
 <main>
     <section class="admin-intro">
@@ -79,21 +85,17 @@ if (isset($_GET['search_email'])) {
     </section>
 
     <section class="admin-container">
-        <!-- Display messages -->
-        <?php if (!empty($successMessage)): ?>
-            <div class="success-message"><?= htmlspecialchars($successMessage) ?></div>
-        <?php endif; ?>
-        <?php if (!empty($errorMessage)): ?>
-            <div class="error-message"><?= htmlspecialchars($errorMessage) ?></div>
-        <?php endif; ?>
 
+        <div id="responseMessage"></div>
         <!-- Search Users -->
-        <form id="searchForm" action="admin.php" method="get" class="admin-search">
-            <div class="form-group">
-                <label for="search_email">Search Users by Email:</label>
-                <input type="text" id="search_email" name="search_email" placeholder="Enter email to search">
-                <button type="submit" class="btn">Search</button>
-            </div>
+        <section class="admin-search">
+            <form id="searchForm" action="admin.php" method="get">
+                <div class="form-group">
+                    <label for="search_email">Search Users by Email:</label>
+                    <input type="text" id="search_email" name="search_email" placeholder="Enter email to search">
+                    <button type="submit" class="btn">Search</button>
+                </div>
+            </form>
 
             <div id="search-results">
                 <?php if (!empty($users)): ?>
@@ -107,7 +109,13 @@ if (isset($_GET['search_email'])) {
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($users as $user): ?>
+                        <?php foreach ($users as $user):
+
+                            if ($user['userID'] == 1) { // admin user skipped
+                                continue;
+                            }
+
+                            ?>
                             <tr>
                                 <td><?= htmlspecialchars($user['userID']) ?></td>
                                 <td>
@@ -116,9 +124,8 @@ if (isset($_GET['search_email'])) {
                                     </div>
                                 </td>
                                 <td>
-                                    <form action="admin.php" method="post" style="display:inline;">
-                                        <input type="hidden" name="promote_user_id"
-                                               value="<?= htmlspecialchars($user['userID']) ?>">
+                                    <form action="admin.php" method="post" style="display:inline;" class="promote-user">
+                                        <input type="hidden" name="promote_user_id" value="<?= htmlspecialchars($user['userID']) ?>">
                                         <button type="submit" class="text-link">Promote to Seller</button>
                                     </form>
                                 </td>
@@ -130,11 +137,7 @@ if (isset($_GET['search_email'])) {
                     <p class="no-users">No users found matching your search.</p>
                 <?php endif; ?>
             </div>
-        </form>
-
-        <!-- TODO: FIX PROMOTE TO SELLER, FIX SERVICES CONTACT -->
-
-        <!-- Search Results -->
+        </section>
     </section>
 </main>
 
@@ -142,6 +145,7 @@ if (isset($_GET['search_email'])) {
 
 <script>
     $(document).ready(function () {
+        // Handle the search form submission via AJAX
         $('#searchForm').on('submit', function (e) {
             e.preventDefault(); // Prevent default form submission
 
@@ -150,7 +154,7 @@ if (isset($_GET['search_email'])) {
             $.ajax({
                 url: 'admin.php', // Send request to the same script
                 type: 'GET',
-                data: {search_email: searchEmail}, // Send the email as a parameter
+                data: { search_email: searchEmail }, // Send the email as a parameter
                 success: function (response) {
                     // Extract the new content and update the search-results section
                     const newContent = $(response).find('#search-results').html();
@@ -158,6 +162,36 @@ if (isset($_GET['search_email'])) {
                 },
                 error: function () {
                     alert('An error occurred while searching. Please try again.');
+                }
+            });
+        });
+
+        // Handle the promote button click and submit via AJAX
+        $(document).on('submit', 'form.promote-user', function (e) {
+            e.preventDefault(); // Prevent default form submission
+
+            const userID = $(this).find('input[name="promote_user_id"]').val(); // Get the userID
+            const form = $(this); // Reference to the current form
+
+
+            $.ajax({
+                url: 'admin.php', // Send request to the same script
+                type: 'POST',
+                data: { promote_user_id: userID }, // Send the userID to be promoted
+                success: function (response) {
+                    const data = JSON.parse(response);
+
+                    // Display success or error message
+                    if (data.success) {
+                        // Remove error message
+                        $('#responseMessage').fadeOut().empty();
+                        form.closest('tr').find('td:last').html('<span class="success-message">Promoted to Seller</span>'); // Change button text to show success
+                    } else {
+                        $('#responseMessage').html('<div class="error-message">' + data.message + '</div>').fadeIn();
+                    }
+                },
+                error: function () {
+                    alert('An error occurred while promoting the user. Please try again.');
                 }
             });
         });
